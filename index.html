@@ -5,444 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HELMORA 📷 — عين ترى أكثر</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --gold: #D4A853;
-            --gold-light: #E8C97A;
-            --dark: #0A0A0A;
-            --darker: #050505;
-            --card: #111111;
-            --text: #E0E0E0;
-            --text-muted: #888888;
-        }
-
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background: var(--dark);
-            color: var(--text);
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        /* ===== HEADER ===== */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(212, 168, 83, 0.1);
-            z-index: 1000;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--gold);
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-        }
-
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            margin-right: 25px;
-            font-weight: 500;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        nav a:hover {
-            color: var(--gold);
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 20px 60px;
-            background: 
-                radial-gradient(ellipse at top, rgba(212, 168, 83, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at bottom right, rgba(212, 168, 83, 0.05) 0%, transparent 40%),
-                var(--darker);
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a853' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(212, 168, 83, 0.1);
-            border: 1px solid rgba(212, 168, 83, 0.3);
-            color: var(--gold);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-        }
-
-        .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 14px 35px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            border: none;
-            font-family: 'Tajawal', sans-serif;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--gold), #B8922E);
-            color: var(--dark);
-            box-shadow: 0 8px 30px rgba(212, 168, 83, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(212, 168, 83, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--gold);
-            border: 2px solid rgba(212, 168, 83, 0.4);
-        }
-
-        .btn-outline:hover {
-            background: rgba(212, 168, 83, 0.1);
-            border-color: var(--gold);
-        }
-
-        /* ===== FEATURES ===== */
-        .features {
-            padding: 100px 20px;
-            background: var(--dark);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.2rem;
-            font-weight: 900;
-            margin-bottom: 15px;
-        }
-
-        .section-title h2 span {
-            color: var(--gold);
-        }
-
-        .section-title p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: var(--card);
-            border: 1px solid rgba(212, 168, 83, 0.08);
-            border-radius: 20px;
-            padding: 35px 30px;
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(212, 168, 83, 0.2);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-icon {
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(135deg, rgba(212, 168, 83, 0.15), rgba(212, 168, 83, 0.05));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            margin-bottom: 20px;
-            border: 1px solid rgba(212, 168, 83, 0.15);
-        }
-
-        .feature-card h3 {
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .feature-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* ===== GALLERY PREVIEW ===== */
-        .gallery {
-            padding: 100px 20px;
-            background: var(--darker);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .gallery-item {
-            aspect-ratio: 4/3;
-            background: var(--card);
-            border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(212, 168, 83, 0.08);
-            transition: transform 0.4s;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.03);
-        }
-
-        .gallery-item .placeholder {
-            color: var(--text-muted);
-            font-size: 3rem;
-        }
-
-        .gallery-item .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 20px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .gallery-item:hover .overlay {
-            opacity: 1;
-        }
-
-        .gallery-item .overlay span {
-            color: var(--gold);
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--darker);
-            border-top: 1px solid rgba(212, 168, 83, 0.08);
-            padding: 50px 20px 30px;
-            text-align: center;
-        }
-
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--gold);
-            margin-bottom: 15px;
-        }
-
-        .footer-text {
-            color: var(--text-muted);
-            margin-bottom: 25px;
-            font-size: 0.95rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .social-links a {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            background: var(--card);
-            border: 1px solid rgba(212, 168, 83, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background: rgba(212, 168, 83, 0.1);
-            color: var(--gold);
-            border-color: rgba(212, 168, 83, 0.3);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 20px;
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .delay-1 { animation-delay: 0.1s; opacity: 0; }
-        .delay-2 { animation-delay: 0.2s; opacity: 0; }
-        .delay-3 { animation-delay: 0.3s; opacity: 0; }
-        .delay-4 { animation-delay: 0.4s; opacity: 0; }
-
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--darker);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--gold);
-            border-radius: 4px;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            nav {
-                display: none;
-            }
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -452,9 +15,11 @@
             <div class="logo-icon">📷</div>
             HELMORA
         </a>
+        <button class="menu-toggle">☰</button>
         <nav>
             <a href="#features">المميزات</a>
             <a href="#gallery">المعرض</a>
+            <a href="#stats">الإحصائيات</a>
             <a href="#about">عنّا</a>
         </nav>
     </header>
@@ -462,16 +27,16 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-badge animate delay-1">🚀 الإصدار التجريبي v0.1</div>
-            <h1 class="animate delay-2">
+            <div class="hero-badge">🚀 الإصدار التجريبي v0.1</div>
+            <h1>
                 HELMORA<br>
                 <span>عين ترى أكثر</span>
             </h1>
-            <p class="animate delay-3">
+            <p>
                 تطبيق كاميرا احترافي للهواتف. يجمع بين قوة أدوات التصوير الاحترافية والذكاء المساعد للمصور.
                 لا نلتقط الصورة فقط... نساعدك على رؤيتها.
             </p>
-            <div class="btn-group animate delay-4">
+            <div class="btn-group">
                 <a href="#" class="btn btn-primary">📥 تحميل التطبيق</a>
                 <a href="#features" class="btn btn-outline">اكتشف المزيد</a>
             </div>
@@ -518,7 +83,7 @@
         </div>
     </section>
 
-    <!-- GALLERY PREVIEW -->
+    <!-- GALLERY -->
     <section class="gallery" id="gallery">
         <div class="section-title">
             <h2>معرض <span>HELMORA</span></h2>
@@ -527,79 +92,94 @@
         <div class="gallery-grid">
             <div class="gallery-item">
                 <div class="placeholder">🌅</div>
-                <div class="overlay"><span>تصوير لاندسكيب</span></div>
+                <div class="overlay">
+                    <span>تصوير لاندسكيب</span>
+                    <small>التقطت بـ HELMORA v0.1</small>
+                </div>
             </div>
             <div class="gallery-item">
                 <div class="placeholder">👤</div>
-                <div class="overlay"><span>بورتريه احترافي</span></div>
+                <div class="overlay">
+                    <span>بورتريه احترافي</span>
+                    <small>وضع البورتريه الذكي</small>
+                </div>
             </div>
             <div class="gallery-item">
                 <div class="placeholder">🌃</div>
-                <div class="overlay"><span>تصوير ليلي</span></div>
+                <div class="overlay">
+                    <span>تصوير ليلي</span>
+                    <small>تقنية Night Vision</small>
+                </div>
             </div>
             <div class="gallery-item">
                 <div class="placeholder">🌸</div>
-                <div class="overlay"><span>ماكرو</span></div>
+                <div class="overlay">
+                    <span>ماكرو</span>
+                    <small>تفاصيل دقيقة</small>
+                </div>
             </div>
             <div class="gallery-item">
                 <div class="placeholder">🏙️</div>
-                <div class="overlay"><span>عمارة وفن</span></div>
+                <div class="overlay">
+                    <span>عمارة وفن</span>
+                    <small>تصوير معماري</small>
+                </div>
             </div>
             <div class="gallery-item">
                 <div class="placeholder">🎬</div>
-                <div class="overlay"><span>سينمائي</span></div>
+                <div class="overlay">
+                    <span>سينمائي</span>
+                    <small>وضع Cinematic</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats" id="stats">
+        <div class="section-title">
+            <h2>HELMORA <span>في أرقام</span></h2>
+            <p>نمو المشروع باستمرار</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number" data-target="1500">0</div>
+                <div class="stat-label">تحميل تجريبي</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="50">0</div>
+                <div class="stat-label">دولة حول العالم</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="98">0</div>
+                <div class="stat-label">% رضا المستخدمين</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="24">0</div>
+                <div class="stat-label">ساعة دعم يومي</div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer id="about">
-        <div class="footer-logo">HELMORA 📷</div>
+        <div class="footer-logo">📷 HELMORA</div>
         <div class="footer-text">
             ليس مجرد تطبيق كاميرا.<br>
             إنه منظومة تصوير تجمع بين الإبداع والتقنية.
         </div>
         <div class="social-links">
-            <a href="#">📧</a>
-            <a href="#">🐦</a>
-            <a href="#">📷</a>
-            <a href="#">💬</a>
+            <a href="#" title="Email">📧</a>
+            <a href="#" title="Twitter">🐦</a>
+            <a href="#" title="Instagram">📷</a>
+            <a href="#" title="Discord">💬</a>
         </div>
         <div class="copyright">
-            © 2026 HELMORA. جميع الحقوق محفوظة.<br>
-            صنع بحب ❤️ بواسطة helmyhelmy44-stack
+            © <span class="current-year">2026</span> HELMORA. جميع الحقوق محفوظة.<br>
+            صنع بحب ❤️ بواسطة <strong>helmyhelmy44-stack</strong>
         </div>
     </footer>
 
-    <script>
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Animate elements on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.feature-card, .gallery-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
